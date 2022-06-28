@@ -1,0 +1,57 @@
+<head>
+    <link href="/static/css/mesJEEI.css" rel="stylesheet"><!-- idem-->
+    {% import "macros/macro_MesJEEI.html" as macro_MesJEEI %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+</head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "parentPage.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<body onload="changerImageFond()"> </body>
+
+    <row>
+        <div class="ajoutMonJEEI"> 
+            <a class="btn btn-warning" href="http://127.0.0.1:5000/specificationMesJEEI" role="button">Créer nouveau jeu d'évasion </a>
+        </div>
+    </row>
+     <!-- Les cartes-->
+    <row>
+        <div class="row composantMesJEEI" id="composantMesJEEI"> 
+
+
+            <!-- (pagination-1)*4 c'est = au numero d'index dans la DB(emplacement >< id JEEI)-->
+            <!-- Index de carte doit être un string sinon impossible de concaterner apres pour creer des ID-->
+            {{ macro_MesJEEI.afficherCarteMesJEEI((pagination-1)*4,listeMesJEEI,"0") }}
+            {{ macro_MesJEEI.afficherCarteMesJEEI((pagination-1)*4+1,listeMesJEEI,"1") }}
+            {{ macro_MesJEEI.afficherCarteMesJEEI((pagination-1)*4+2,listeMesJEEI,"2") }}
+            {{ macro_MesJEEI.afficherCarteMesJEEI((pagination-1)*4+3,listeMesJEEI,"3") }}
+
+
+        </div>
+    </row>  
+
+    <!-- Pager-->
+    <row> 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {%  for numPager in range(1,nbrPagesTotal+1) %} 
+                    <li class="page-item"><a class="page-link" onclick="fonction_affichageMesJEEI({{numPager}},{{listeMesJEEI}},{{nbrPagesTotal}},{{nbrJEEI}})">{{numPager}}</a></li>  
+                {% endfor %}
+            </ul>
+        </nav>
+    </row>
+        
+
+
+    </div>
+     <script src="{{ url_for('static',filename='js/fonctions_MesJEEI.js')}}"></script>
+     <script src="{{ url_for('static',filename='js/fonctions_flux.js')}}"></script> <!-- Laisser ca partout - besoin pour mon hack de fond-->
+    </div>
+    
+{% endblock %}
+
+

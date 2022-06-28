@@ -1,0 +1,128 @@
+<head>
+ 
+    <link href="/static/css/specificationMesJEEI.css" rel="stylesheet"><!-- idem-->
+    <link href="/static/css/mesExperimentations.css" rel="stylesheet"><!-- idem-->
+    {% import "macros/macro_specificationMesJEEI.html" as macro_specificationMesJEEI %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+</head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "parentPage.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<body onload="changerImageFond()"> </body>
+
+
+    
+<row>
+  <ul class="nav nav-pills ">
+      <li id="navLinkPresentation" class="nav-item">
+
+        <a  class="nav-link nvSousPage active" aria-current="page" onclick="fonction_Presentation()">Présentation</a>
+ 
+      </li>
+    
+      <li id="navLinkDocumentation" class="nav-item" >
+        <a  class="nav-link nvSousPage" onclick="fonction_Documentation()">Documentation</a>
+      </li>
+      <li id="navLinkTest" class="nav-item">
+        <a class="nav-link nvSousPage" onclick="fonction_Test()">Test</a>
+      </li>
+      
+      <li id="navLinkResultats" class="nav-item">
+
+        <a class="nav-link nvSousPage " onclick="fonction_Resultats()">Résultats</a>
+
+      </li>
+      <li id="navLinkListeExperimentations" class="nav-item">
+        <a class="nav-link nvSousPage" onclick="fonction_ListeExperimentations()">Liste Experimentations</a>
+      </li>
+      <li id="navLinkEquipe" class="nav-item">
+        <a class="nav-link nvSousPage" onclick="fonction_Equipe()">Equipe</a>
+      </li>
+      <li>
+        {# si la personne est pas l'auteur du JEEI elle voit pas le bouton valider#}
+        {% if currentUser.id == monJEEIRecupere.auteurID %} 
+        <span id="btnValiderJeeibtn"> 
+        <button type="button"  class="btn btn-success" onclick='fonction_validerJEEI({{monJEEIRecupere.id}})' 
+        
+        {% if monJEEIRecupere.estValide %}
+            disabled
+            style="color:rgb(255, 255, 255); background: red;"
+          > 
+          Validé
+         {% else %} 
+         >
+          Valider
+          {% endif %} 
+        </button>
+        {% endif %} 
+      
+      
+      </li>
+      </span>
+      
+  </ul>
+  
+</row >
+<!-- Ligne-->
+  <HR >
+<row>
+
+</row>
+
+
+
+
+<row>
+    <div id="idContenuSousPagePresentation">
+      {{macro_specificationMesJEEI.afficheContenuPresentation(monJEEIRecupere,currentUser)}}
+      
+    </div>
+ 
+    <div id="idContenuSousPageDocumentation">
+      {{macro_specificationMesJEEI.afficheContenuDocumentation(specificationJEEIRecupere,monJEEIRecupere,theme,publicCible,currentUser)}}
+      
+    </div>
+    
+    <div id="idContenuSousPageTest">
+      {{macro_specificationMesJEEI.afficheContenuTest(questions,monJEEIRecupere,currentUser)}}
+     
+    </div>
+    <div id="idContenuSousPageResultats">
+      {{macro_specificationMesJEEI.afficheContenuResultats(resultats)}}
+      
+    </div>
+    <div id="idContenuSousPageListeExperimentations">
+      {{macro_specificationMesJEEI.afficheContenuListeExperimentations(monJEEIRecupere,experimentations,users,infosExperimentations)}}
+     
+    </div>
+    <div id="idContenuSousPageEquipe">
+      {{macro_specificationMesJEEI.afficheContenuEquipe(membres,monJEEIRecupere,currentUser)}}
+     
+    </div>
+</row>
+
+</row style="margin-bottom:25px">
+<!-- Ligne-->
+  <HR>
+<row>
+
+
+
+
+
+
+
+    </div>
+     <script src="{{ url_for('static',filename='js/fonctions_specificationMesJEEI.js')}}"></script>
+     <script src="{{ url_for('static',filename='js/fonctions_flux.js')}}"></script> <!-- Laisser ca partout - besoin pour mon hack de fond-->
+     
+    </div>
+    
+{% endblock %}
+
+

@@ -1,0 +1,95 @@
+.composantFlux{
+
+    
+    
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+
+    
+
+
+}
+
+.carteJEEI{
+
+    
+    background-color: rgb(177, 176, 176);
+    height: 400px;
+    margin: 15px;
+    border-radius: 15px;
+
+    
+}
+
+.fluxKpi{
+    height: 20rem;
+    border: 2px;
+
+    margin: 15px;
+
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.fluxKpiItemExperimental{
+    background-color: gold;
+  
+    margin: 15px;
+    border-radius: 15px;
+}
+
+.fluxKpiItemTemoin{
+    background-color: grey;
+ 
+    margin: 15px;
+    border-radius: 15px;
+}
+
+.carteIndicateursClesPrincipaux{
+    border-color: brown;
+    border-width: 1cm;
+}
+
+.chiffreCle{
+
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 4vw;
+
+}
+
+.titrechiffreCle{
+    color: grey;
+    font-weight: bold;
+    
+    
+}
+
+.textChiffreCle{
+    color: grey;
+}
+
+
+.titrechiffreCleTemoin{
+    color: white;
+    font-weight: bold;
+    
+    
+}
+
+.textChiffreCleTemoin{
+    color: white;
+}

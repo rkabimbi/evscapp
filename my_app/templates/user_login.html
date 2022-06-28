@@ -1,0 +1,192 @@
+
+    <head>
+  
+
+      
+        <link href="/static/css/user_login.css" rel="stylesheet"><!-- idem-->
+        {% import "macros/macroUn.html" as macroUn %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+    </head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "parentPage.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<div class="cadreSuperieurLogin">
+<div class="row"> 
+    <div class="composantLogin col-sm-12" id="composantLogin"> 
+        <h1 class="titreComposantLogin"> EVSCAPP</h1>
+        <div class="boxLoginForm"> 
+            <center> 
+                <form action="/" method="POST"> 
+                    <div class="form-group"> <!-- formulaire-->
+                        
+                        {{ formulaireLogin.csrf_token }}<!-- sécurité-->
+                        <div class="formulaire-row">
+                            {{ formulaireLogin.username.label }} 
+                        </div>
+                    
+                        <div> 
+                            {{ formulaireLogin.username(size=20, class='formulaire-control', placeholder="Utilisateur") }}
+                        </div><!-- 200=taille champs reponse-->
+                        <Br>
+                        <div class="formulaire-row">
+                            {{ formulaireLogin.password.label }} 
+                        </div>
+                    
+                        <div>
+                            {{ formulaireLogin.password(size=20, class='formulaire-control', placeholder="Mot de Passe") }}
+                        </div>
+                    </div>
+                    
+                    <div class="btnLogin"> 
+                        <div class="formulaire-row ">
+                            {{ formulaireLogin.submit (class='btn btn-warning')}}
+                        </div><!-- pour afficher le bouton-->
+                        <div> 
+                            <button type="button" class="btn btn-secondary" onclick="chargementFormulaireInscription()">
+                                    Inscription
+                            </button>
+                        </div>
+                   
+                    </div>
+                    
+                
+                </form>
+            </center>
+        
+    
+
+
+            <a class="lienHypertexte" href="http://127.0.0.1:5000/motDePasseOublie">Mot de passe oublié?</a>
+    
+    </div>     
+</div>
+</div>
+
+<div><!-- si il y a une erreur déclenchée sur base des objets formulaires d'inscription-->
+    {%if formulaireInscription.errors%}
+        {%for message in formulaireInscription.username.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.firstname.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.email.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        
+        {%for message in formulaireInscription.lastname.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.password.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.passwordConfirmation.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.titre.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+        {%endfor%}
+        {%for message in formulaireInscription.universite.errors%} <!-- pour chaque message d'erreurs générés-->
+            <div class="alert alert-danger" role="alert">{{message}}  </div> <!-- on affiche le message prévu avec style-->   
+         {%endfor%}
+        
+        
+    {%endif%}
+</div>
+
+
+
+
+<!-- L'idée est de mettre ici le composant d'inscription pour ne pas devoir tt taper à la main e njavascript-->
+
+<div id="composantCache" style="display: none;">
+
+    <div class="composantInscription col-sm-12" id="composantInscription"> 
+        <!-- Zone flash-->
+    
+        
+    
+        <div class="boxInscriptionForm" style="padding: 25px;"> 
+    
+            <h2>Créer un compte</h2>
+            <form action="/inscription" method="POST"> 
+                <div class="form-group"> <!-- formulaire-->
+                    
+                    {{ formulaireInscription.csrf_token }}<!-- sécurité-->
+                
+                    <div class="row" style="margin-top:10px" >
+                        <div class="col-sm-6">{{ formulaireInscription.username.label }}
+                            <div> {{ formulaireInscription.username(size=30, class='formulaire-control') }}</div>  
+                        </div>
+                        
+                        <div class="col-sm-6">{{ formulaireInscription.titre.label }}
+                            <div> {{ formulaireInscription.titre(size=30, class='formulaire-control') }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-sm-6">{{ formulaireInscription.lastname.label }} 
+                            <div>{{ formulaireInscription.lastname(size=30, class='formulaire-control') }}</div>
+                        </div>
+                        <div class="col-sm-6">{{ formulaireInscription.firstname.label }} 
+                            <div> {{ formulaireInscription.firstname(size=30, class='formulaire-control') }}</div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:10px" >
+                        <div class="col-sm-6"> {{ formulaireInscription.universite.label }} 
+                            <div> {{ formulaireInscription.universite(size=30, class='formulaire-control') }}</div>
+                        </div>
+
+                        <div class="col-sm-6"> {{ formulaireInscription.email.label }}
+                            <div> {{ formulaireInscription.email(size=30, class='formulaire-control') }} </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-sm-6"> {{ formulaireInscription.password.label }}
+                            <div> {{ formulaireInscription.password(size=30, class='formulaire-control') }}</div>
+                        </div>
+
+                        <div class="col-sm-6"> {{ formulaireInscription.passwordConfirmation.label }}
+                            <div> {{ formulaireInscription.passwordConfirmation(size=30, class='formulaire-control') }} </div>
+                        </div>
+
+                    </div>
+
+    
+                   
+                </div>
+                <div class="form-row" style="margin-top:10px">{{ formulaireInscription.submit (class='btn btn-warning')}}</div><!-- pour afficher le bouton-->
+            
+            
+            </form>
+    
+        
+        </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+    <script src="{{ url_for('static',filename='js/fonctions_user_login.js')}}"></script>
+</div>
+      
+{% endblock %}
+
+

@@ -1,0 +1,667 @@
+
+
+
+{% macro afficheContenuPresentation(monJEEI,currentUser) %}
+
+
+
+<div > 
+  <div class="input-group col-sm-10">
+    <img class="imgMonJEEI" src="{{monJEEI.img}}"   >
+  </div>
+
+  <div class="input-group col-sm-10 headerPhotoMonJEEI" style="color:grey">
+          <!--action = nom de la route où ca nous mene -->
+          <form action="uploadPhoto?idJEEI={{monJEEI.id}}" method="post" enctype=multipart/form-data>
+           
+          <input type="file" name="file" >
+          <input  type="submit" value="Chargez" class="btn btn-secondary  file-upload-btn" style="cursor :pointer" > 
+        </form>
+
+  </div>
+</div>
+
+
+
+
+
+<div id="idFormulaireContenuPresentation" class="formulaireSpecificationMesJEEI">
+    <div class="row mb-3">
+      <label for="idMonJEEI" class="col-sm-2 col-form-label" >ID</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="idIDMonJEEI" disabled placeholder={{monJEEI.id}} style="color:grey">
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="dateCreationMonJEEI" class="col-sm-2 col-form-label" >Création</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="idDateCreationMonJEEI" disabled placeholder={{monJEEI.dateCreation}} style="color:grey">
+        </div>
+        
+      </div>
+    <div class="row mb-3">
+        <label for="nomMonJEEI" class="col-sm-2 col-form-label" >Nom</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="idNomMonJEEI"  value="{{monJEEI.nom}}"  onchange="fonction_sauvegardeTableJeei('idNomMonJEEI',{{monJEEI.id}})" style="color:grey" 
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID   %}
+            disabled
+          {% endif %}
+          
+          
+          
+          > 
+        </div>
+        <div class="col-sm-2 " id='affichageValidationSauvegardenom'>
+          
+        </div>
+      </div>
+ 
+    <div class="row mb-3" >
+        <label class="col-sm-2 form-label" for="descriptifMonJEEI" >Descriptif </label>
+        <div class=" col-sm-8 form-outline">
+            <textarea style="color:rgb(79, 79, 79)" class="form-control" id="idDescriptifMonJEEI" maxlength='140'rows="4" 
+              onchange='fonction_sauvegardeTableJeei("idDescriptifMonJEEI",{{monJEEI.id}})'style="color:grey" 
+              {# if  est pour le cas où le jeei est valide alors on disabled#}
+              {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+              disabled
+              {% endif %}> 
+          {{monJEEI.descriptif}}</textarea> 
+        </div>
+        <div class="col-sm-2 " id='affichageValidationSauvegardedescriptif'>
+          
+          
+        </div>
+    </div>
+
+
+
+</div>
+
+
+{% endmacro %}
+
+
+{% macro afficheContenuDocumentation(specification,monJEEI,theme,publicCible,currentUser) %}
+
+
+
+<div id="idFormulaireContenuDocumentation" class="formulaireSpecificationMesJEEI">
+  <div class="row mb-3">
+    <label for="nbrJoueursMinMonJEEI" class="col-sm-2 col-form-label" >Nbr Joueurs(min)</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="idNbrJoueursMinMonJEEI" value="{{specification.nbrJoueursMin}}" onchange="fonction_sauvegardeTableJeei('idNbrJoueursMinMonJEEI',{{monJEEI.id}})" style="color:grey"
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+    </div>
+    <div class="col-sm-2 " id='affichageValidationSauvegardenbrJoueursMin'>
+        
+    </div>
+
+    <label for="nbrJoueursMaxMonJEEI" class="col-sm-2 col-form-label" >Nbr Joueurs(max)</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="idNbrJoueursMaxMonJEEI" value="{{specification.nbrJoueursMax}}" onchange="fonction_sauvegardeTableJeei('idNbrJoueursMaxMonJEEI',{{monJEEI.id}})" style="color:grey"
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+    </div>
+    <div class="col-sm-2 " id='affichageValidationSauvegardenbrJoueursMax'>
+        
+    </div>
+  </div>
+
+   
+
+  <div class="row mb-3">
+    <label for="budgetMonJEEI" class="col-sm-2 col-form-label" >Budget(Eur.)</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="idBudgetMonJEEI" value="{{specification.budget}}"onchange="fonction_sauvegardeTableJeei('idBudgetMonJEEI',{{monJEEI.id}})" style="color:grey"
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+    </div>
+    <div class="col-sm-2 " id='affichageValidationSauvegardebudget'>
+        
+    </div>
+
+    <label for="dureeMinutesMonJEEI" class="col-sm-2 col-form-label" >Durée(minutes)</label>
+    <div class="col-sm-2">
+     
+      <input type="number" class="form-control" id="idDureeMinutesMonJEEI" value="{{specification.dureeMinutes}}" onchange="fonction_sauvegardeTableJeei('idDureeMinutesMonJEEI',{{monJEEI.id}})" style="color:grey"
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+    </div>
+ 
+    <div class="col-sm-2 " id='affichageValidationSauvegardedureeMinutes'>
+        
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-2 form-label" for="scenarioMonJEEI" >Scenario </label>
+    <div class=" col-sm-8 form-outline">
+        <textarea class="form-control" id="idScenarioMonJEEI" maxlength='140'rows="4" 
+          onchange='fonction_sauvegardeTableJeei("idScenarioMonJEEI",{{monJEEI.id}})'style="color:grey"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> {{specification.scenario}}</textarea> 
+    </div>
+    <div class="col-sm-1 " id='affichageValidationSauvegardescenario'>
+      
+      
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="publicCibleMonJEEI" class="col-sm-2 col-form-label" >Public</label>
+    <div class="col-sm-2">
+      
+
+      <select class="form-select form-select-lg mb-3 " aria-label=".form-select-lg example" id="idPublicCibleMonJEEI" onchange='fonction_sauvegardeTableJeei("idPublicCibleMonJEEI",{{monJEEI.id}})' selected="{{specification.publicCible.name}}" style="color:grey"
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+        <!-- si specification.publicCibleName (ce qui vient dela DB) == publicName (nom du champs) alors tu dis que c'est le "selected"-->
+        {% for public in publicCible %}
+          <option  style="color:grey" value="{{ public.name }}" {% if public.name==specification.publicCible.name %} selected="selected"{% endif %} >{{ public.value }}</option> 
+        {% endfor %}
+      </select>
+
+    </div>
+    <div class="col-sm-2 " id='affichageValidationSauvegardepublicCible'>
+        
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="themeMonJEEI" class="col-sm-2 col-form-label" >Thème</label>
+    <div class="col-sm-4">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="idThemeMonJEEI" onchange='fonction_sauvegardeTableJeei("idThemeMonJEEI",{{monJEEI.id}})' selected="{{specification.theme.name}}" 
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+        <!-- si specification.publicCibleName (ce qui vient dela DB) == publicName (nom du champs) alors tu dis que c'est le "selected"-->
+        {% for tm in theme %}
+          <option style="color:grey" value="{{ tm.name }}" {% if tm.name==specification.theme.name %} selected="selected"{% endif %} >{{ tm.value }}</option> 
+        {% endfor %}
+      </select>
+      
+      
+    </div>
+ 
+    <div class="col-sm-2 " id='affichageValidationSauvegardetheme'>
+        
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row mb-3">
+
+    <label for="chapitreMonJEEI" class="col-sm-2 col-form-label" >Chapitre</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="idChapitreMonJEEI"  value="{{specification.chapitre}}"  onchange="fonction_sauvegardeTableJeei('idChapitreMonJEEI',{{monJEEI.id}})" style="color:grey"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %} > 
+        </div>
+        <div class="col-sm-2 " id='affichageValidationSauvegardechapitre'>
+          
+        </div>
+    
+  </div>
+  
+ 
+
+
+
+
+
+
+
+  <!-- Fichier upload-->
+  <div class="row mb-3">
+    <label class="col-sm-2 form-label" for="documentationPdfMonJEEI" >Documentation </label>
+    <!--action = nom de la route où ca nous mene -->
+    <form action="uploadFilePdf?idJEEI={{monJEEI.id}}" method="post" enctype=multipart/form-data>
+      
+      <input type="file" name="file" label="documentation" style="color:grey">
+      <input type="submit" id="idBtnChargezSpec" value="Chargez" class="btn btn-secondary  file-upload-btn" id= "idDocMonJEEI"style="cursor :pointer" 
+      {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+      {%if specification.documentation  %}
+        <button type="button" class="btn btn-warning" onclick="window.open('/static/img/doc{{monJEEI.id}}.pdf','_blank')" >Consultez</button>
+      {%endif%}
+ 
+    </form>
+    <div class="col-sm-2 " id='affichageValidationSauvegardedocumentationPdf'>
+    </div>
+  </div>
+  
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endmacro %}
+
+
+
+{% macro afficheContenuTest(questions, monJEEI,currentUser) %}
+<div class="scroller" >
+  {% for i in range(10) %}
+    <form id="idFormulaireContenuTest" class="formulaireContenuTestMesJEEI " style="margin:25px">
+      
+      <h4 > Question {{i+1}}</h4>
+      <div class="row mb-3">
+        
+          <label for="testQuestionMonJEEI" class="col-sm-2 col-form-label" >Question</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control testQuestion"  id={{"idTestQuestionMonJEEI"~ questions[i].id}}  value="{{questions[i].question}}"   style="color:grey" onchange="fonction_sauvegardeSpecificationTest('question','idTestQuestionMonJEEI',{{questions[i].id}})" 
+            {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+          </div>
+          <div class="col-sm-2 " id={{'validationTestquestion'~ questions[i].id}}>
+              
+          </div>
+        
+      </div>
+
+
+      <div class="row mb-3">
+
+        <label for="testSolutionCorrecteMonJEEI" class="col-sm-2 col-form-label" >Solution</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control testQuestion"  id={{"idTestSolutionCorrecteMonJEEI"~ questions[i].id }} value="{{questions[i].solutionCorrecte}}"   style="color:grey" onchange="fonction_sauvegardeSpecificationTest('solution','idTestSolutionCorrecteMonJEEI',{{questions[i].id}})"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+        </div>
+        <div class="col-sm-2 " id={{'validationTestsolution'~questions[i].id }}>
+            
+        </div>
+      </div>
+
+
+
+      <div class="row mb-3">
+
+        <label for="testExplicatifMonJEEI" class="col-sm-2 col-form-label" >Explicatif</label>
+        <div class="col-sm-8">
+        
+          <textarea class="form-control testQuestion"  id={{"idExplicatifMonJEEI"~ questions[i].id}} maxlength='140'rows="4" style="color:grey" onchange="fonction_sauvegardeSpecificationTest('explicatif','idExplicatifMonJEEI',{{questions[i].id}})"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}>
+           {{questions[i].explicatif}} </textarea> 
+        </div>
+        <div class="col-sm-2 " id={{'validationTestexplicatif'~questions[i].id }}>
+            
+        </div>
+      </div>
+
+     
+
+
+
+
+      <div class="row mb-3">
+
+        <label for="testSolutionIncorrecte1MonJEEI" class="col-sm-2 col-form-label" >Proposition 1</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control testQuestion"  id={{"idSolutionIncorrecteMonJEEI"~ questions[i].id}}  value="{{questions[i].solutionIncorrecte1}}"   style="color:grey" onchange="fonction_sauvegardeSpecificationTest('solutionIncorrecte1','idSolutionIncorrecteMonJEEI',{{questions[i].id}})"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+        </div>
+        <div class="col-sm-2 " id={{'validationTestsolutionIncorrecte1'~questions[i].id }}>
+            
+        </div>
+      </div>
+
+
+      <div class="row mb-3">
+
+        <label for="testSolutionIncorrecte2MonJEEI" class="col-sm-2 col-form-label" >Proposition 2</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control testQuestion"  id={{"idSolutionIncorrecteMonJEEI2"~ questions[i].id}}  value="{{questions[i].solutionIncorrecte2}}"   style="color:grey" onchange="fonction_sauvegardeSpecificationTest('solutionIncorrecte2','idSolutionIncorrecteMonJEEI2',{{questions[i].id}})"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+        </div>
+        <div class="col-sm-2 " id={{'validationTestsolutionIncorrecte2'~questions[i].id }}>
+            
+        </div>
+      </div>
+
+      <div class="row mb-3">
+
+        <label for="testSolutionIncorrecte3MonJEEI" class="col-sm-2 col-form-label" >Proposition 3</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control testQuestion"  id={{"idSolutionIncorrecteMonJEEI3"~ questions[i].id}}  value="{{questions[i].solutionIncorrecte3}}"   style="color:grey" onchange="fonction_sauvegardeSpecificationTest('solutionIncorrecte3','idSolutionIncorrecteMonJEEI3',{{questions[i].id}})"
+          {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %}> 
+        </div>
+        <div class="col-sm-2 " id={{'validationTestsolutionIncorrecte3'~questions[i].id }}>
+            
+        </div>
+      </div>
+
+
+      
+      
+
+    </form>
+    {% endfor %}
+
+
+
+
+
+
+
+</div>
+
+
+{% endmacro %}
+
+
+{% macro afficheContenuResultats(resultats) %}
+<div class="row" style="margin:15px;font-weight: bold;color: grey;">
+{%if resultats%}
+  Données relatives à toutes les expérimentations réalisées pour ce jeu d'évasion ({{resultats[1]["nbrParticipants"]}}  participants):
+
+  </div>
+
+  <div class="row">
+            <div class="col-sm-3 scoringJaune ">
+              <h1 class="chiffreCle"> 
+                {%if resultats[1]["evolutionApprentissageMoyenne"]>0%}
+                + {{(resultats[1]["evolutionApprentissageMoyenne"]*100)|round(2)}}%
+                {%else%}
+                {{(resultats[1]["evolutionApprentissageMoyenne"]*100)|round(2)}}%
+                {%endif%}
+              </h1>
+              <div class="card-body">
+                <h5 class="card-title titrechiffreCleTemoin"> Evolution relative d'apprentissage moyenne</h5>
+                <p class="card-text textChiffreCleTemoin">Evolution relative d'apprentissage moyenne pour le groupe expérimental.</p>
+              </div>
+          </div>
+
+         
+          <div class="col-sm-3 scoringGris ">
+            <h1 class="chiffreCle"> 
+        
+              {{(resultats[1]["motivation"]*100)|round(2)}}%
+          
+
+            </h1>
+            <div class="card-body">
+              <h5 class="card-title titrechiffreCleTemoin"> Motivation moyenne</h5>
+              <p class="card-text textChiffreCleTemoin">Motivation moyenne témoignée par les étudiants à l'idée d'apprendre via le jeu d'évasion.</p>
+            </div>
+        </div>
+
+
+        <div class="col-sm-3 scoringGris ">
+          <h1 class="chiffreCle"> 
+      
+            {{(resultats[1]["ux"]*100)|round(2)}}%
+        
+
+          </h1>
+          <div class="card-body">
+            <h5 class="card-title titrechiffreCleTemoin"> Expérience utilisateur moyenne</h5>
+            <p class="card-text textChiffreCleTemoin">Appréciation moyenne témoignée par les étudiants à l'issue de l'activité.</p>
+          </div>
+      </div>
+
+      
+
+
+  </div>
+
+{%endif%}
+
+{% endmacro %}
+
+{% macro afficheContenuListeExperimentations(monJEEI,experimentations,users,infosExperimentations) %}
+
+<div class="row">
+  <div class="btnGroupMesJEEIExperimentation ">
+    {%if monJEEI.estValide %}
+    <button class="btn btn-secondary" onclick="window.location.href = 'http://127.0.0.1:5000/uneExperimentation?idJEEI={{monJEEI.id}}' "  style =" margin-left: 15px; margin-right: 15px;">Experimenter</button>
+    {%else %}
+    <button class="btn btn-secondary" id="btnExpDansSpec" onclick="window.location.href = 'http://127.0.0.1:5000/uneExperimentation?idJEEI={{monJEEI.id}}' " disabled  style =" margin-left: 15px; margin-right: 15px;">Experimenter</button>
+    {%endif%}
+
+
+  </div>
+</div>
+
+<div class="row scrollercarteListeExperimentation"> 
+
+  {%if experimentations%}<!-- pour ne pas que ca foire quand c'est null-->
+
+  {%for experimentation in experimentations%}
+  
+    {{afficherCarteExperimentation(users[experimentation.fk_UserId],experimentation, monJeei,infosExperimentations,(loop.index-1))}}
+
+
+  {%endfor%}
+  {%endif%}
+
+</div>
+
+
+
+
+
+{% endmacro %}
+
+
+
+
+
+
+{%macro afficherCarteExperimentation(user,experimentation, jeei,infosExperimentations,increment)%}
+
+<div class="col-sm-10 carteListeExperimentationPt"  >
+  <h4 style="color:grey"> Expérimentation #{{infosExperimentations["id"][increment]}}</h4>
+  <div class="row">
+
+    <div class="col-sm-5">
+          <ul class="column list-group list-group-flush">
+            <li class="list-group-item">
+              
+              <B> Date</B> : {{infosExperimentations["date"][increment]}}
+
+
+            </li>
+
+            <li class="list-group-item">
+              <B> Statut</B> : 
+              {%if infosExperimentations["complete"][increment] %}
+              Complète 
+              {%else%}
+              En-cours 
+              {%endif%}
+            </li>
+
+
+ 
+          </ul>
+
+      </div>   
+      
+      <div class="col-sm-5">
+        <ul class="column list-group list-group-flush">
+ <!--    
+          <li class="list-group-item">
+            <B> Lieu </B>: Lieu
+          </li>
+--> 
+          <li class="list-group-item">
+            <B> Participants </B>: {{infosExperimentations["nbrParticipants"][increment]}}
+          </li>
+
+          <li class="list-group-item">
+            <B> Contact </B>: {{infosExperimentations["prof"][increment]}}
+          </li>
+<!--
+          <li class="list-group-item">
+            <B> Apprentissage </B>: score 1
+          </li>
+
+          <li class="list-group-item">
+            <B> Perception </B>: score 2
+          </li>
+
+ -->         
+        </ul>
+
+
+
+
+
+
+    </div>   
+
+
+
+
+  </div>
+</div>
+
+
+{% endmacro %}
+
+
+
+
+
+
+
+
+
+{% macro afficheContenuEquipe(membres,monJEEI,currentUser) %}
+
+<!-- Button trigger modal -->
+<div class="row rowEquipeFirst ">
+  <button type="button" style="height : 40px"class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter" id="idBtnModalEquipe"
+  {# if  est pour le cas où le jeei est valide alors on disabled#}
+          {% if monJEEI.estValide or currentUser.id is not sameas monJEEI.auteurID %}
+            disabled
+          {% endif %} >
+    Ajouter membre
+  </button>
+  <div id="flashModalMembreexistant" style="height : 40px" >
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajout de membre</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="nomMembreEquipe" class="col-sm-2 col-form-label" >Nom</label>
+        <input type="text" class="form-control" id="nomMembreEquipeModal"  value=""   style="color:grey" >
+
+        <label for="prenomMembreEquipe" class="col-sm-2 col-form-label" >Prénom</label>
+        <input type="text" class="form-control" id="prenomMembreEquipeModal"  value=""   style="color:grey" >
+
+        <label for="emailMembreEquipe" class="col-sm-2 col-form-label" >email</label>
+        <input type="text" class="form-control" id="emailMembreEquipeModal"  value=""   style="color:grey" >
+
+        <label for="universiteMembreEquipe" class="col-sm-2 col-form-label" >Universite</label>
+        <input type="text" class="form-control" id="universiteMembreEquipeModal"  value=""   style="color:grey" >
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="fonction_ajouterMembreEquipe({{monJEEI.id}})">Sauver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Affichage des membres deja present-->
+<div class="row listeEquipe" id="listeEquipe">
+
+  
+  {{afficheCarteMembreEquipe(membres)}}
+
+
+
+</div>
+
+
+
+
+{% endmacro %}
+
+
+{% macro afficheCarteMembreEquipe(membres) %}
+
+{% for membre in membres %}
+
+<div class="col-sm-5 carteMembreEquipe"  >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      
+      <B> Nom</B> :{{membre.lastname}}
+    </li>
+    <li class="list-group-item">
+      <B> Prénom</B> : {{membre.firstname}}
+    </li>
+    <li class="list-group-item">
+     <B>Université  </B>: {{membre.universite}}
+    </li>
+    <li class="list-group-item">
+      <B> email </B>: {{membre.email}}
+    </li>
+  </ul>
+
+
+
+</div>
+
+{% endfor %}
+
+{% endmacro %}

@@ -1,0 +1,119 @@
+<head>
+    <link href="/static/css/questionnaireParticipantsUX.css" rel="stylesheet"><!-- idem-->
+    {% import "frontend_etudiant/macros/macro_questionnaireParticipantsDemographique.html" as macro_questionnaireParticipantsDemographique %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+</head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "frontend_etudiant/parentPageEtudiant.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<body onload="changerImageFond()"> </body>
+<h2 class="likert-header" style="color: grey;">Questionnaire Démographique ({{jeei.nom}}) </h2>
+<h4> Participant :  {{participant.nom}} {{participant.prenom}} </h4>
+
+
+{%if experimentation.etape3==false%}
+
+<div class="boxQuestionnaireDemographique">
+    <div class="form-group">
+      <label for="ageParticipant" style="font-weight:bold">D01 - Quel âge avez-vous?</label>
+      <input type="number" class="form-control" id="idQuestionnaireDemographiqueAgeParticipant"  placeholder="Entrez votre-âge">
+      
+    </div>
+
+    <div class="form-group boxQuestionnaireDemographique">
+      <label for="genreParticipant" style="font-weight:bold">D02 - De quel genre êtes-vous?</label>
+      <Br>
+      <select class="form-control  " aria-label=".form-select-lg example" id="idQuestionnaireDemographiqueSexeParticipant"   style="color:grey">
+        <option disabled selected value> -- Selectionnez une option -- </option>
+        {% for sexe in sexes %}
+            <option  style="color:grey" value="{{ sexe.name }}" >{{ sexe.value }}</option> 
+        {% endfor %}
+        
+      </select>
+
+    </div>
+
+    <div class="form-group boxQuestionnaireDemographique">
+      <label for="etudesParticipant" style="font-weight:bold">D03 - Quel est votre niveau d’études actuel?</label>
+      <Br>
+      <select class="form-control  " aria-label=".form-select-lg example" id="idQuestionnaireDemographiqueEtudesParticipant"   style="color:grey">
+        <option disabled selected value> -- Selectionnez une option -- </option>
+        {% for etude in etudes %}
+            <option  style="color:grey" value="{{ etude.name }}" >{{ etude.value }}</option> 
+        {% endfor %}
+        
+      </select>
+
+    </div>
+
+
+
+
+
+    <div class="form-group boxQuestionnaireDemographique">
+        <label for="localisationParticipant" style="font-weight:bold">D04 - Dans quelle région du monde avez vous vécu le plus longtemps au cours de ces 5 dernières années ?</label>
+        <Br>
+        <select class="form-control  " aria-label=".form-select-lg example" id="idQuestionnaireDemographiqueLocalisationParticipant"   style="color:grey">
+          <option disabled selected value> -- Selectionnez une option -- </option>
+          {% for localisation in localisations %}
+              <option  style="color:grey" value="{{ localisation.name }}" >{{ localisation.value }}</option> 
+          {% endfor %}
+          
+        </select>
+  
+      </div>
+
+      <div class="form-group boxQuestionnaireDemographique">
+        <label for="experienceParticipant" style="font-weight:bold">D05 - Selon vous, quel est votre niveau de maîtrise de la matière abordée dans l’activité pédagogique concernée par cette évaluation ?</label>
+        <Br>
+        <select class="form-control  " aria-label=".form-select-lg example" id="idQuestionnaireDemographiqueExperienceParticipant"   style="color:grey">
+          <option disabled selected value> -- Selectionnez une option -- </option>
+          {% for experience in experiences %}
+              <option  style="color:grey" value="{{ experience.name }}" >{{ experience.value }}</option> 
+          {% endfor %}
+          
+        </select>
+  
+      </div>
+
+      <div class="form-group boxQuestionnaireDemographique">
+        <label for="experienceJeeiParticipant" style="font-weight:bold">D06 - A quelle fréquence jouez vous à des jeux d’évasion ( pédagogique ou non) ?</label>
+        <Br>
+        <select class="form-control  " aria-label=".form-select-lg example" id="idQuestionnaireDemographiqueExperienceJeeiParticipant"   style="color:grey">
+          <option disabled selected value> -- Selectionnez une option -- </option>
+          {% for experienceJeei in experiencesJeei %}
+              <option  style="color:grey" value="{{ experienceJeei.name }}" >{{ experienceJeei.value }}</option> 
+          {% endfor %}
+          
+        </select>
+  
+      </div>
+
+
+
+   
+    <button type="submit" style="margin-bottom: 50px;" class="btn btn-warning" onclick="sauverFormulaireDemographique({{participant.id}},{{experimentation.id}})">Soumettre</button>
+</div>
+{%else%}
+<div>
+
+    <div class="jumbotron text-center " style="background-color:rgb(104, 104, 104)">
+      <h1 class="display-3" style="color:white">ATTENTION!</h1>
+      <p class="lead"  style="color:white"><strong>Votre enseignant à mis un terme à cette étape, il ne vous est plus possible d'évaluer.</strong> </p>
+      <hr>
+  </div>
+
+{%endif%}
+
+
+
+<script src="{{ url_for('static',filename='js/fonctions_questionnaireParticipantsDemographique.js')}}"></script>
+<script src="{{ url_for('static',filename='js/fonctions_flux.js')}}"></script> <!-- Laisser ca partout - besoin pour mon hack de fond-->
+</div>
+
+{% endblock %}

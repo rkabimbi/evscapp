@@ -1,0 +1,64 @@
+{%macro afficherCarteMesExperimentations(experimentation)%}
+
+
+<div class="col-sm-10 carteListeMesExperimentations" onclick="redirectionVersUneExperimentation({{experimentation.idExperimentation}})" >
+    <h3> {{experimentation.nom}} <span style="color:gray;font-size: medium;"> #{{experimentation.idExperimentation}}</span></h3>
+  <div class="row">
+    <div class="col-sm-5">
+        
+          <ul class="column list-group list-group-flush">
+            <li class="list-group-item">
+              
+              <B> Date</B> : {{experimentation.dateEvenement}}
+
+
+            </li>
+            <li class="list-group-item">
+              <B> Public</B> :{{experimentation.publicCible.value}}
+            </li>
+            
+            
+ 
+          </ul>
+
+      </div>   
+      
+      <div class="col-sm-5">
+        <ul class="column list-group list-group-flush">
+     
+         
+
+
+
+          <li class="list-group-item">
+            <B> Statut</B> : 
+              {% if experimentation.statut %}
+              Complète 
+              {%else%}
+              En-cours 
+              {%endif%}
+              
+          </li>
+          <li class="list-group-item">
+            <B> Participants </B>: {{experimentation.participants}}
+          </li>
+
+
+          
+        </ul>
+
+
+
+
+
+
+    </div>   
+
+
+
+
+  </div>
+</div>
+
+
+{% endmacro %}

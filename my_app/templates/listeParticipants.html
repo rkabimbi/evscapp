@@ -1,0 +1,92 @@
+<head>
+ 
+    <link href="/static/css/listeParticipants.css" rel="stylesheet"><!-- idem-->
+    {% import "macros/macro_listeParticipants.html" as macro_listeParticipants %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+</head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "parentPage.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<body onload="changerImageFond()"> </body>
+
+<div class="row titreUneExperimentation"> 
+    <h1> {{JEEI.nom}}</h1>
+    <h3 class="numExperimentation"> Experimentation #{{experimentation.idInterne}}</h3>
+    
+</div >
+<div class="row"> 
+    <h4 class="col-sm-6 sousTitreUneExperimentation" id="ssTitreListeParticipants">/ Liste des participants ({{nbrParticipants}}) </h4>
+    <div class=" col-sm-6 ligneBoutonEnvoyer"> 
+        <button type="button " class="btn btn-secondary" style="margin-left: 25px;" onclick="redirectionVersUneExperimentation({{experimentation.id}})">Retour</button>
+        <button type="button " class="btn btn-warning" style="margin-left: 25px;" alt="Fixez la liste définitive des participants" onclick="fonction_validerListeParticipants({{experimentation.id}})">Valider</button>
+    </div>
+</div> 
+
+<div class="row">
+
+    <div class="col-sm-6 fondFormListeParticipants">
+        <div class="row formListeParticipante">
+            <label for="nomParticipant" class="col-sm-4 col-form-label" >Nom</label>
+            <input type="text" class="form-control col-sm-8 "  id="idNomListeParticipant" {%if experimentation.etape1 ==true%}
+            disabled {%endif%}/>
+            
+        </div>
+        <div class="row formListeParticipante">
+            <label for="prenomParticipant" class="col-sm-4 col-form-label" >Prénom</label>
+            <input type="text" class="form-control col-sm-8 " id="idPrenomListeParticipant" {%if experimentation.etape1 ==true%}
+            disabled {%endif%} />
+        </div>
+        <div class="row formListeParticipante">
+            <label for="emailParticipant" class="col-sm-4 col-form-label" >Email</label>
+            <input type="text" class="form-control col-sm-8 " id="idEmailListeParticipant" {%if experimentation.etape1 ==true%}
+            disabled {%endif%}/>
+        </div>
+        <div class="row buttonEnvoiListe" >
+        <button type="button " class="btn btn-warning" onclick="fonction_ajouterParticipant({{experimentation.id}},{{nbrParticipants}})" id="btnAjouterParticipantListeParticipant"
+        {%if experimentation.etape1 ==true%}
+            disabled {%endif%}/>Ajouter</button>
+        </div>
+    </div>
+    <div class="scrollerListeParticipants col-sm-6" id="zoneScrollListeParticipants">
+      
+        {% for participant in participants%}
+
+            {{macro_listeParticipants.afficheCarteParticipant(participant.nom, participant.prenom, participant.email,participant.consentement)}}
+
+        {%endfor%}
+        
+       
+
+
+
+        
+    </div>
+
+
+
+
+
+</row>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<script src="{{ url_for('static',filename='js/fonctions_listeParticipants.js')}}"></script>
+<script src="{{ url_for('static',filename='js/fonctions_flux.js')}}"></script> <!-- Laisser ca partout - besoin pour mon hack de fond-->
+
+</div>
+
+{% endblock %}

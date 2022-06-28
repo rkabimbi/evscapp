@@ -1,0 +1,82 @@
+.boxLoginForm{
+    background: rgb(255, 255, 255);
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    
+    flex-wrap: wrap ;
+    
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    border-radius: 15px;
+
+   
+
+}
+
+.composantLogin{
+    
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+
+    justify-content: center;
+    
+
+  
+
+  
+    
+}
+
+.btnLogin{
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-evenly;
+    
+    width: 250px;
+  
+   
+}
+
+.titreComposantLogin{
+    color: white;
+    font-weight: bold;
+}
+
+
+.boxInscriptionForm{
+    background: rgb(255, 255, 255);
+    margin: 10px;
+    padding: 10px;
+   
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    border-radius: 15px;
+
+   
+
+}
+
+
+
+.cadreSuperieurLogin{
+    
+    flex-wrap: wrap ;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    
+    min-height: 100vh; /* pour dire que la taille prend 100%du viewport*/
+}

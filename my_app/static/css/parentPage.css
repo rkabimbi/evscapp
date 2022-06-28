@@ -1,0 +1,45 @@
+body {
+    
+    padding: 0.5rem;
+    
+    background: rgb(0, 0, 0);
+    min-height: 100vh; /* pour dire que la taille prend 100%du viewport*/
+    background-image:url('../img/imgLoginPage2.png') ;
+    background-size: cover;
+    
+    
+   
+
+}
+
+.nav-item a {
+    color: rgb(209, 209, 209);
+}
+
+.container{
+    padding: 0.5rem;
+ 
+}
+
+.lienHypertexte{
+    color: grey;
+}
+
+.flash{
+  
+    margin-top: 25px;
+    height: 75px;
+
+}
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    color: white;
+    text-align: center;
+     
+}
+

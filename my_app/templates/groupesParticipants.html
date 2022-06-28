@@ -1,0 +1,90 @@
+<head>
+    <link href="/static/css/listeParticipants.css" rel="stylesheet"><!-- idem-->
+    <link href="/static/css/groupesParticipants.css" rel="stylesheet"><!-- idem-->
+    {% import "macros/macro_listeParticipants.html" as macro_groupesParticipants %}<!-- import de macro. Comme ça c'est dispo pour toutes les pages filles -->
+</head>
+
+<!-- herite de main (de tout sauf les blocks (donc le menu)) -->
+{% extends "parentPage.html" %}
+
+<!-- Tout ce dont on a pas herité de main -->
+
+
+
+{% block body %}
+<body onload="changerImageFond()"> </body>
+
+<div class="row titreUneExperimentation"> 
+    <h1> {{JEEI.nom}}</h1>
+    <h3 class="numExperimentation"> Experimentation #{{idExperimentation}}</h3>
+    
+    
+</div >
+<div class="row"> 
+    <h4 class="col-sm-6 sousTitreUneExperimentation" >/ Liste des groupes</h4>
+    <div class=" col-sm-6 ligneBoutonEnvoyer"> 
+        <button type="button " class="btn btn-secondary" style="margin-left: 25px;" onclick="location.href='http://127.0.0.1:5000/afficherUneExperimentationExistante?idExperimentation={{idExperimentation}}'">Retour</button>
+        </div>
+</div> 
+
+<table class="table tableGroupe">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >id</th>
+      <th scope="col" style=" text-align: left;">Nom</th>
+      <th scope="col" style=" text-align: left;">Prénom</th>
+      <th scope="col" style=" text-align: left;">Type</th>
+ 
+    </tr>
+  </thead>
+</table>
+
+<div class="scroller"> 
+<table class="table tableGroupe">
+
+ 
+    <tbody >
+      {%for participant in participants%}
+      <tr>
+        <th scope="row">{{participant.id}}</th>
+        <td>{{participant.nom}}</td>
+        <td>{{participant.prenom}}</td>
+        {%if participant.groupeExperimental%}
+          <td>Experimental</td>
+        {%else%}
+          <td>Témoin</td>
+        {%endif%}
+      
+      </tr>
+      {%endfor%}
+     
+    </tbody>
+
+  </table>
+</div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<script src="{{ url_for('static',filename='js/fonctions_flux.js')}}"></script> <!-- Laisser ca partout - besoin pour mon hack de fond-->
+
+</div>
+
+{% endblock %}
