@@ -4,7 +4,7 @@ basedir= os.path.abspath(os.path.dirname(__file__))#on définit un objet que l'o
 
 class BaseConfig(object):
     #UPLOAD_FOLDER = '/Users/rudykabimbingoy/Documents/DEVELOPEMENT/_MEMOIRE/eVscape_flask_ok/X_UPLOAD_FOLDER'
-    UPLOAD_FOLDER = '/Users/rudykabimbingoy/Documents/DEVELOPEMENT/_MEMOIRE/eVscape_flask_ok/my_app/static/img'
+    UPLOAD_FOLDER = os.path.join(basedir,'my_app\\static','img')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
     SECRET_KEY = binascii.hexlify(os.urandom(24))  
     DEBUG=True
