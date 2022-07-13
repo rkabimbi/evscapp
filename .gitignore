@@ -3,7 +3,5 @@
 /db
 /my_app/__pycache__
 *.sh
-*.jpg
-*.png
-*.jpeg
 *.pdf
+/my_app/static/img/*
