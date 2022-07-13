@@ -1,6 +1,4 @@
 # EvscApp
-==========
-
 EvscApp is is a quasi-experimental evaluation framework that aims to measure the educational effectiveness of Educational Escape Games for Computer Science (EEGC) by collecting standardized and rigorous empirical data.
 Thanks to EvscApp, EEGC designers can avoid the heavy work of producing and justifying their evaluation protocol. It also makes it possible to compare the EEGCs that have been evaluated by EvscApp with one another and to replicate the experiments by sharing their specifications. 
 
