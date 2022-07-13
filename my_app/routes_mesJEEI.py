@@ -121,7 +121,7 @@ def fonction_conversionSQLDICT(mesJEEI,specifications):
             resultatsTemp=fonction_calculResultats(JEEI)
             evolutionApprentissageMoyenne=resultatsTemp[1]["evolutionApprentissageMoyenne"]
             res["scores"].append(evolutionApprentissageMoyenne)
-        except ZeroDivisionError:
+        except Exception as e:
             res["scores"].append(0)
         
         if JEEI.estValide:#je dois procéder de la sorte pcq javascript me pose un probleme avec mes booleens
