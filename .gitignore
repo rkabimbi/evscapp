@@ -1,20 +1,9 @@
 /venv
 /__pycache__
-<<<<<<< HEAD
 /db/*
 /my_app/__pycache__
 *.sh
 *.pdf
 /my_app/static/img/*
 !/db/
-=======
-**/__pycache__/
-/db/*
-/my_app/__pycache__
-*.sh
-*.jpg
-*.png
-*.jpeg
-*.pdf
-/my_app/static/img/*
->>>>>>> 97686b104b870c9312ac9e32b9b4cc234d87cf7c
+!/my_app/static/img/
