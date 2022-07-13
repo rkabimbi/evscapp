@@ -5,4 +5,4 @@
 *.sh
 *.pdf
 /my_app/static/img/*
-!/db
+!/db/
