@@ -18,17 +18,17 @@ This repository contains the EvscApp Web application, designed to assist researc
 * The application is, for the moment, in French only. We are working on an English version. Coming soon!
 
 ## Screenshots
-The experimental dashboard (englified)
+### The experimental dashboard (englified)
 ![The experimental dashboard](screenshots/dashboard.jpg "The experimental dashboard")
 
-The results page for an EEGC (englified)
+### The results page for an EEGC (englified)
 ![The results page for an EEGC](screenshots/results.jpg "The results page for an EEGC")
 
-The forms for EEGC information
+### The forms for EEGC information
 ![Form : presentation of the EEGC](screenshots/presentation.jpg "Form : presentation of the EEGC")
 ![Form : documentation of the EEGC](screenshots/documentation.jpg "Form : documentation of the EEGC")
 
-The form for creating a test relative to the EEGC thematic
+### The form for creating a test relative to the EEGC thematic
 ![Form : creation of a test](screenshots/test.jpg "Form : creation of a test")
 
 
