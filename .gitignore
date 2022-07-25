@@ -3,7 +3,6 @@
 /db/*
 /my_app/__pycache__
 *.sh
-*.pdf
 /my_app/static/img/*
 !/db/
 !/my_app/static/img/
