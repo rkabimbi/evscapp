@@ -10,7 +10,14 @@ This repository contains the EvscApp Web application, designed to assist researc
 * Make sure you have a directory `my_app/static/img/`
 * To start the application, open a command prompt at the project's root and type `python run.py` to execute script `run.py` which will start the application server.
 * In a browser, go to the local server's address as stated in the console. The address should be something like `http://127.0.0.1:5000/`
-* You can now register an account and encode your pedagogical escape games to start experimenting with the EvscApp methodology. Congrats! 
+* You can now register an account and encode your pedagogical escape games to start experimenting with the EvscApp methodology. Congrats!
+
+## Documentation
+Documentation can be found in the `doc/` folder in the repository. In particular, the following appendices of the EvscApp presentation paper can be found:
+* A detailed explanation of the statistical evaluation factors (or indicators) used to evaluate EEGCs.
+* The various questionnaires used in the EvscApp method (SUS/MEEGA/IGE/HEEG/GUESS/...).
+* The flow scale for games questionnaires. 
+* The consent form. 
 
 ## Additional notes
 * The application is, for the moment, in French only. We are working on an English version. Coming soon!
